@@ -36,8 +36,9 @@ public class HealthMain {
     static String userId="";//FIXED
     static String unitId="";//FIXED
     static String visitType = "0"; //FIXED
+    private static final String MOBILE_PHONE = "手机号";
 
-    static String mid = "";//FIXED
+    static String mid = "";//FIXED memberId
     static int threadNum = 2;
     static int interval = 250;
     static volatile boolean isSuccess = false;
@@ -182,7 +183,7 @@ public class HealthMain {
                                                         yuyueMax=yuyueMax==null||yuyue_max.trim().length()==0?"0":yuyueMax;
                                                         if (Long.valueOf(yuyueNum)<Long.valueOf(yuyueMax) && isSuccess==false) {
                                                             logger.info("               正在抢购");
-                                                            String submitHttpPath="https://weapp.91160.com/order/submit.html?_form_id=99801161bb4642ee84dfb3389d097d72&token="+token+"&cid="+cid+"&user_id="+userId+"&user_key="+userKey+"&mid="+mid+"&hisMemId=&mobile=15626869864&doc_id="+docId+"&unit_id="+unitId+"&dep_id="+depId+"&sch_id="+timeScheduleId+"&detl_id="+detlId+"&guardian_member_id=0&platformPassword=&counties_id=18351&member_address=null";
+                                                            String submitHttpPath="https://weapp.91160.com/order/submit.html?_form_id=99801161bb4642ee84dfb3389d097d12&token="+token+"&cid="+cid+"&user_id="+userId+"&user_key="+userKey+"&mid="+mid+ "&hisMemId=&mobile=" + MOBILE_PHONE + "&doc_id=" +docId+"&unit_id="+unitId+"&dep_id="+depId+"&sch_id="+timeScheduleId+"&detl_id="+detlId+"&guardian_member_id=0&platformPassword=&counties_id=18351&member_address=null";
                                                             JSONObject submitResult = invokeHTTP(submitHttpPath, null, false, null);//TODO
                                                             if (submitResult!=null) {
                                                                 String msg = submitResult.getString("msg");
